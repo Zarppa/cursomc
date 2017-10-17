@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.guiPalma.cursomc.domain.Categoria;
 import com.guiPalma.cursomc.repositories.CategoriaRepository;
+import com.guiPalma.cursomc.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class CategoriaService {
@@ -16,6 +17,10 @@ public class CategoriaService {
 		
 		Categoria obj = repo.findOne(id);
 		
+		if(obj == null ) {
+			throw new ObjectNotFoundException("Objeto não enontrado! Id: " +id
+					+", Tipo: " + Categoria.class.getName());
+		} 
 		return obj;
 		
 	}
